@@ -5,8 +5,8 @@ Mid-term Project
 This project aims to realise the effect of LED light strips lighting up with the rhythm of music through Arduino control. The design transforms the traditional static pumpkin lights into dynamic responsive pumpkin lights, creating a more interactive and festive experience.
 
 //materials required
- 1. Arduino control board (e.g. Arduino Uno or Nano): for controlling the LED strip to respond to the music.
- 2. LED strip (WS2812B or similar programmable LED strip is recommended): for creating colour and brightness effects.
+ 1. Arduino control board: for controlling the LED strip to respond to the music.
+ 2. LED strip WS2812B: for creating colour and brightness effects.
  3. microphone sound sensor: for detecting music or sound intensity.
  4. 5V power supply or USB power supply: to power the Arduino and the LED strip.
  5. wires and connectors: for connecting the components.
