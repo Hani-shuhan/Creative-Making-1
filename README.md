@@ -50,10 +50,9 @@ For added functionality, a microphone sensor was added to allow the LED strip to
 
 //Code Implementation
 
-Using the FastLED library to control the colour change and response time of the LED strip, a microphone sensor is connected to an analogue input pin (e.g. A0) on the Arduino to change the brightness and colour of the LEDs based on the sound intensity signal. The program can be used to respond to an external music beat to make the strip light up in sync with the music.
+Using the FastLED library to control the colour change and response time of the LED strip, a microphone sensor is connected to an analogue input pin on the Arduino to change the brightness and colour of the LEDs based on the sound intensity signal. The program can be used to respond to an external music beat to make the strip light up in sync with the music.
 
 //Code
-
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
  #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
@@ -82,11 +81,12 @@ void loop() {
   Serial.println(soundValue);             // Print sound value for debugging
   
   // Adjust LED strip effect based on sound level
-  if (soundValue > SOUND_THRESHOLD) {
+
+
+    if (soundValue > SOUND_THRESHOLD) {
     int brightness = map(soundValue, SOUND_THRESHOLD, 1023, 0, 255); // Map sound value to brightness range
     brightness = constrain(brightness, 0, 255); // Ensure brightness is between 0 and 255
     strip.setBrightness(brightness); // Set strip brightness
-
     // Change color based on sound level
     uint32_t color = strip.Color(225, 0, 0); // Red
     if (soundValue > 500) {
@@ -109,8 +109,3 @@ void loop() {
 
   delay(100); // Adjust delay as needed
 }
-
-
-
-
-
