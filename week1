@@ -1,4 +1,10 @@
 # week1-progress
+
+In the first week, we learned how to make the light turn on, which was very interesting. Based on this, I tried the effect of making the light flash
+
+
+
+code
 void setup() {
   // put your setup code here, to run once:
 pinMode(LED_BUILTIN,OUTPUT);
