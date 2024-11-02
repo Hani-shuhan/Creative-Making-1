@@ -1,5 +1,4 @@
-Week Four:
-
+##Week Four:
 How was the original song re-worked?
 It speeds up the tempo of the song and incorporates some electronic music.
 
@@ -9,3 +8,67 @@ The rhythm and arrangement of the song changed.
 How did the remix change the meaning or vibe of the original
 song? 
 Through the speed of the music to show the environment of the song, fast-tempo music always gives people a fierce feeling.
+
+
+
+1.Sensors controlling the servo
+schematic diagram：
+
+
+
+##code
+ int switchState = 0;
+void setup(){
+ pinMode(3,OUTPUT);
+ pinMode(4,OUTPUT);
+ pinMode(5,OUTPUT);
+ pinMode(2,INPUT);
+}
+void loop(){
+ switchState = digitalRead(2);
+ if (switchState == LOW) {
+ digitalWrite(3, HIGH);
+ digitalWrite(4, LOW); 
+ digitalWrite(5, LOW); 
+ }
+ else { 
+ digitalWrite(3, LOW);
+ digitalWrite(4, LOW);
+ digitalWrite(5, HIGH);
+ delay(250); 
+ digitalWrite(4, HIGH);
+ digitalWrite(5, LOW);
+ delay(250); 
+ }
+} 
+
+
+
+
+
+2.Connect your Servo Motor and make it move
+schematic diagram：
+
+
+
+
+##code
+
+#include <Servo.h> 
+
+int servoPin = 3;
+
+Servo Servo1;
+
+void setup() {
+  Servo1.attach(servoPin);
+}
+
+void loop(){
+  Servo1.write(0);
+  delay(1000);
+  Servo1.write(90);
+  delay(1000);
+  Servo1.write(180);
+  delay(1000);
+}
