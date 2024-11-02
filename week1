@@ -1,20 +1,54 @@
 # week1-progress
+Complete Projects 1 and 2 in the Arduino Project Book
 
-In the first week, we learned how to make the light turn on, which was very interesting. Based on this, I tried the effect of making the light flash
+## Project Components
+Arduino Uno
+LED
+220Ω resistor
+Breadboard
+Jumper wires
+In the first week, we learned how to turn on the light, which was very interesting but still difficult for me as a beginner. I tried many times before I succeeded. On this basis I tried to make the effect of small lights flashing
+
+## Circuit Diagram
 
 
 
-code
+
+
+
+
+##code
+// the setup function runs once when you press reset or power the board
 void setup() {
-  // put your setup code here, to run once:
-pinMode(LED_BUILTIN,OUTPUT);
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+
 }
 
+// the loop function runs over and over again forever
 void loop() {
-  
-digitalWrite(LED_BUILTIN, HIGH); 
-delay(1000); 
-digitalWrite(LED_BUILTIN, LOW); 
-delay(1000);
+  digitalWrite(13, HIGH);  
+  digitalWrite(12, HIGH);
+  digitalWrite(11, HIGH);// turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(13, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(11, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);                      // wait for a second
+
+
+ for (int brightness = 0; brightness <= 255; brightness++) {
+    analogWrite(13, brightness);
+    analogWrite(12, brightness);
+    analogWrite(11, brightness);
+    delay(10);
 }
-![week1](https://github.com/user-attachments/assets/342c5e56-1743-480a-9fc4-1297e8490758)
+  for (int brightness = 255; brightness > 0; brightness--) {
+    analogWrite(13, brightness);
+    analogWrite(12, brightness);
+    analogWrite(11, brightness);
+    delay(10);
+
+}}
