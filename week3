@@ -11,17 +11,36 @@ PCB board
 Jumper wires
 Electronic components (LEDs, resistors)
 Safety equipment (gloves, goggles)
-
 I welded for a long time because I was very worried about safety for the first time
- image
+schematic diagram：
 
 
-2.Lab Report
-
-Project Overview：
-In this lab, I explored various foundational concepts in physical computing, including [briefly mention the main concepts, like working with sensors, microcontrollers, or basic circuit assembly]. This hands-on experience helped reinforce key skills in wiring, coding, and troubleshooting basic circuits.
 
 
+
+
+2.DIY Bend Sensor
+I experimented with my device with the most basic code, and it didn't go as well as expected. I succeeded only with the help of my friends
+schematic diagram：
+
+
+
+
+
+
+##code
+int sensorPin = A0; 
+int sensorValue;
+
+void setup() {
+  Serial.begin(9600);  
+}
+
+void loop() {
+  sensorValue = analogRead(sensorPin);  
+  Serial.println(sensorValue);  
+  delay(100);  
+}
 
 
 
