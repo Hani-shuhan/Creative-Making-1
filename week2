@@ -1,8 +1,6 @@
 week2
 
 
-
-https://github.com/Hani-shuhan/Creative-Making-1/edit/main/week2
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
  #include <avr/power.h> 
