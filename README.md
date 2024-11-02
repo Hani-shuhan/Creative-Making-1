@@ -33,10 +33,9 @@ https://github.com/user-attachments/assets/aac67be7-9034-44a3-972a-2935f69c5f6d
 
 
 //Design Rationale
-
- - Interactive: add sound response so that the brightness and colour of the LED strip changes with the rhythm of the music.
- - Aesthetics and Practicality: Traditional pumpkin lamps have monotonous lighting, adding dynamic light strips enhances the visual effect and fun.
- - Resource Accessibility: The use of widely available materials and simple circuit design makes the project easy to reproduce.
+Interactive: add sound response so that the brightness and colour of the LED strip changes with the rhythm of the music.
+Aesthetics and Practicality: Traditional pumpkin lamps have monotonous lighting, adding dynamic light strips enhances the visual effect and fun.
+Resource Accessibility: The use of widely available materials and simple circuit design makes the project easy to reproduce.
 
 
 
@@ -55,13 +54,13 @@ Using the FastLED library to control the colour change and response time of the 
 //Code
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
- #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
+ #include <avr/power.h> /
 #endif
 
-#define LED_PIN    6         // NeoPixel data pin
-#define LED_COUNT 100        // Number of pixels in the LED strip
-#define SOUND_PIN  A0        // Sound sensor connected to A0
-#define SOUND_THRESHOLD 90   // Sound threshold to trigger color change
+#define LED_PIN    6         
+#define LED_COUNT 100      
+#define SOUND_PIN  A0       
+#define SOUND_THRESHOLD 90   
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -70,42 +69,39 @@ void setup() {
     clock_prescale_set(clock_div_1);
   #endif
   
-  strip.begin();                // Initialize the NeoPixel strip
-  strip.show();                 // Turn off all pixels
-  strip.setBrightness(255);     // Set maximum brightness
-  Serial.begin(9600);           // Initialize serial monitor for debugging
+  strip.begin();              
+  strip.show();               
+  strip.setBrightness(255);     
+  Serial.begin(9600);          
 }
 
 void loop() {
-  int soundValue = analogRead(SOUND_PIN); // Read value from sound sensor
-  Serial.println(soundValue);             // Print sound value for debugging
-  
-  // Adjust LED strip effect based on sound level
+  int soundValue = analogRead(SOUND_PIN);
+  Serial.println(soundValue);           
 
 
     if (soundValue > SOUND_THRESHOLD) {
-    int brightness = map(soundValue, SOUND_THRESHOLD, 1023, 0, 255); // Map sound value to brightness range
-    brightness = constrain(brightness, 0, 255); // Ensure brightness is between 0 and 255
-    strip.setBrightness(brightness); // Set strip brightness
-    // Change color based on sound level
-    uint32_t color = strip.Color(225, 0, 0); // Red
+    int brightness = map(soundValue, SOUND_THRESHOLD, 1023, 0, 255); 
+    brightness = constrain(brightness, 0, 255); 
+    strip.setBrightness(brightness);
+ 
+    uint32_t color = strip.Color(225, 0, 0); 
     if (soundValue > 500) {
-      color = strip.Color(0, 150, 0); // Green
+      color = strip.Color(0, 150, 0); 
     }
     if (soundValue > 800) {
-      color = strip.Color(0, 0, 200); // Blue
+      color = strip.Color(0, 0, 200); 
     }
 
-    // Update LED strip with new color
     for (int i = 0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, color); // Set color of each pixel
+      strip.setPixelColor(i, color); 
     }
-    strip.show(); // Display updated colors
+    strip.show(); 
   } else {
-    // If no sound is detected, turn off the LED strip
+    
     strip.clear();
     strip.show();
   }
 
-  delay(100); // Adjust delay as needed
+  delay(100); 
 }
