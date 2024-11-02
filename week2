@@ -1,6 +1,14 @@
-week2
+##week2
+
+1.Playing with Neopixels
+Use the led strips that your teacher gives out to light up and change colors during class
+
+schematic diagram：
 
 
+
+
+##code
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
  #include <avr/power.h> 
@@ -29,3 +37,111 @@ void loop() {
     pixels.show(); 
 
     delay(DELAYVAL); 
+
+
+
+
+#3 - LOVE-O-METER 
+At the beginning, I failed, and the temperature sensor continued to burn, and my hand was burned, which made me more careful in the subsequent experiment
+
+schematic diagram：
+
+
+
+
+##code
+const int sensorPin = A0;
+const float baselineTemp = 20.0;
+
+void setup() {
+ Serial.begin(9600); 
+ for(int pinNumber = 2; pinNumber < 5; pinNumber++) {
+   pinMode(pinNumber, OUTPUT);
+   digitalWrite(pinNumber, LOW);
+ } 
+}
+
+void loop() {
+ int sensorVal = analogRead(sensorPin);
+ Serial.print("Sensor Value: "); 
+ Serial.print(sensorVal);
+
+ float voltage = sensorVal * (5.0 / 1024.0); 
+ Serial.print(", Volts: ");
+ Serial.print(voltage);
+ Serial.print(", degrees C: "); 
+ 
+ 
+ float temperature = (voltage - 0.5) * 100;
+ Serial.println(temperature);
+
+
+ if (temperature < baselineTemp) {
+   digitalWrite(2, LOW);
+   digitalWrite(3, LOW);
+   digitalWrite(4, LOW);
+ } else if (temperature >= baselineTemp + 2 && temperature < baselineTemp + 4) {
+   digitalWrite(2, HIGH);
+   digitalWrite(3, LOW);
+   digitalWrite(4, LOW);
+ } else if (temperature >= baselineTemp + 4 && temperature < baselineTemp + 6) {
+   digitalWrite(2, HIGH);
+   digitalWrite(3, HIGH);
+   digitalWrite(4, LOW);
+ } else if (temperature >= baselineTemp + 6) {
+   digitalWrite(2, HIGH);
+   digitalWrite(3, HIGH);
+   digitalWrite(4, HIGH);
+ }
+
+ delay(500); 
+}
+
+
+
+#4 - LIGHT THERIMIN
+schematic diagram：
+
+
+
+
+
+##code
+ int sensorValue;
+ int sensorLow = 1023;
+ int sensorHigh = 0;
+ const int ledPin = 13;
+ void setup() {
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+  while (millis() < 5000) {
+    sensorValue = analogRead(A0);
+    if (sensorValue > sensorHigh) {
+      sensorHigh = sensorValue;
+    }
+    if (sensorValue < sensorLow) {
+      sensorLow = sensorValue;
+    }
+  }
+  digitalWrite(ledPin, LOW);
+ }
+  void loop() {
+   sensorValue = analogRead(A0);
+   int pitch =  map(sensorValue,sensorLow,sensorHigh, 50, 4000);
+   tone(8,pitch,20);
+   delay(10);
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
